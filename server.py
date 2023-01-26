@@ -42,13 +42,15 @@ class MyWebServer(socketserver.BaseRequestHandler):
             response = "HTTP/1.1 405 Method Not Allowed\r\n" + "Content-Type: text/html" + "\r\n\r\n <h1>405 Method Not Allowed</h1>"
             
         else:
-            
             contentType = ""
             response = ""
             
             if os.path.isfile(path):
                 fileName = request_data[1].decode("utf-8")
-                extension = fileName.split(".")[1]
+                extension = ""
+
+                if '.' in fileName:
+                    extension = fileName.split(".")
 
                 file_content = open(path).read()
 
@@ -60,6 +62,11 @@ class MyWebServer(socketserver.BaseRequestHandler):
                     contentType = "text/css"
                     response = "HTTP/1.1 200 OK\r\n" + "Content-Type: " + contentType + "\r\nContent_Length: " + str(len(file_content)) + "\r\n\r\n" + file_content
             
+                #other or no extensions
+                else:
+                    contentType = "text/plain"
+                    response = "HTTP/1.1 200 OK\r\n" + "Content-Type: " + contentType + "\r\nContent_Length: " + str(len(file_content)) + "\r\n\r\n" + file_content
+
             elif os.path.isdir(path):
                 
                 if os.path.isfile(path + "index.html"):
