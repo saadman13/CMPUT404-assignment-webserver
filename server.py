@@ -44,13 +44,13 @@ class MyWebServer(socketserver.BaseRequestHandler):
         else:
             contentType = ""
             response = ""
-            
+
             if os.path.isfile(path):
                 fileName = request_data[1].decode("utf-8")
                 extension = ""
 
-                if '.' in fileName:
-                    extension = fileName.split(".")
+                if "." in fileName:
+                    extension = fileName.split(".")[1]
 
                 file_content = open(path).read()
 
