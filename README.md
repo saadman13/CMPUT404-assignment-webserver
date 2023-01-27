@@ -25,3 +25,5 @@ examples thus some of the code is Copyright © 2001-2023 Python
 Software Foundation; All Rights Reserved under the PSF license (GPL
 compatible) http://docs.python.org/2/library/socketserver.html
 
+Two new png files - root.png and deep.png were added by Saadman Islam Khan.
+
